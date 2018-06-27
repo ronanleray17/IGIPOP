@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+
+{% block listeIG %}
+<ul><a href="{% url 'modifier_IG' IG.ID_IG %}">Modifier IG</a></ul>
+    
+<ul>
+<table>
+<caption>Détails de l'étude {{IG.ID_IG}}.
+</caption>
+    <tr><td colspan="2">Ouvrage : {{IG.ouvrages}}</td>
+    </tr>
+    <tr><td colspan="2">Du {{IG.date_debut}} au {{IG.date_fin}}.</td>
+    </tr>
+
+    <tr>
+        <th>Résumé</th>
+        <th>Details</th>
+    </tr>
+    <tr>
+        <td><p>{{IG.resume}}</p></td>
+        <td rowspan="2"><p>{{IG.details}}</p></td>
+    </tr>
+    <tr><td>Statut : {{IG.statut}}.</td>
+    </tr>
+</table>
+</ul>
+  <div id="listePJ">
+{% for docs in PJ %}
+    <ul><a href={{docs.doc.url}}>{{ docs.nom }} [{{docs.dateUp}} - {{docs.uploader}}]<br/>
+    <img src="{{ docs.doc.url }}", style="width: auto; height: auto;max-width: 120px;max-height: 100px"/>  </ul>
+    
+{% empty %}
+    <ul>Aucune PJ associée.</ul>
+{% endfor %}
+  </div>
+{% endblock %}
+
+

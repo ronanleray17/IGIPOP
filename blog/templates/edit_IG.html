@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block listeIG %}
+{% if saved %}<h1>Modification enregistrée ! !</h1>{% endif %}
+{% if saved == False %}Modification non enregistrée ! !{% endif %}
+<p>Edit = {{edit}}</p>
+<p>Saved = {{saved}}</p>
+<form action="{% url 'modifier_IG' IG.ID_IG %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
+
+

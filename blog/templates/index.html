@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Initialisation et Gestion des Interventions Pour les Opérations Programmées{% endblock %}
+
+{% block sidebar %}
+<h1>Filtres</h1>
+<p> Choisissez les filtres à appliquer </p>
+<a href="#" class="button"><span class="filter">Appliquer le filtre</span></a>
+<h1>Recherche textuelle :</h1>
+<li><input type="text" name="recherche_txt" size="20"></li>
+<h1>Zones</h1>
+<ul class="submenu">
+    <li><input type="checkbox">Ouest</li>
+    <li><input type="checkbox">Sud</li>
+    <li><input type="checkbox">Est</li>
+</ul>
+<h1>GMR</h1>
+<ul class="submenu">
+    <select>
+        <option>Tous</option>
+        <option>Atlantique</option>
+        <option>Bretagne</option>
+        <option>Anjou</option><option>Sologne</option>
+    </select>
+</ul>
+{% endblock %}
+
+{% block listeIG %}
+{% for IG in liste_IG %}
+    <ul><a href="{% url 'afficher_IG' IG.ID_IG %}">{{ IG.ID_IG }} : {{IG.ouvrages}} du {{IG.date_debut}} au {{IG.date_fin}}</ul>
+    
+{% empty %}
+    <ul>Aucun IG ne correspond à ces filtres.</ul>
+{% endfor %}
+{% endblock %}
